@@ -1,15 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LLTU2025_6_StorageApi.Models;
+namespace LLTU2025_6_StorageApi.Models.DTO;
 
-public class Product
+public class UpdateProductDto
 {
-    public int Id { get; set; }
-    
     [Required]
     public string Name { get; set; } = string.Empty;
+
+    [Range(0, 1000)]
     public int Price { get; set; }
-    
+
     [Required]
     public string Category { get; set; } = string.Empty;
 
