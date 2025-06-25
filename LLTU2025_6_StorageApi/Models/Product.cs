@@ -1,4 +1,4 @@
-﻿namespace LLTU2025_6_StorageApi;
+﻿namespace LLTU2025_6_StorageApi.Models;
 
 public class Product
 {

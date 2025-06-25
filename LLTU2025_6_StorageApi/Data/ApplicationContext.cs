@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using LLTU2025_6_StorageApi.Models;
+
+namespace LLTU2025_6_StorageApi.Data
+{
+    public class ApplicationContext : DbContext
+    {
+        public ApplicationContext (DbContextOptions<ApplicationContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Product> Products { get; set; } = default!;
+    }
+}
