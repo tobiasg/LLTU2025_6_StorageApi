@@ -23,9 +23,16 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProductDto>>> GetProduct()
+    public async Task<ActionResult<IEnumerable<ProductDto>>> GetProduct([FromQuery] string? category)
     {
-        return await _context.Products.Select(p => new ProductDto
+        IQueryable<Product> products = _context.Products;
+
+        if (!string.IsNullOrEmpty(category))
+        {
+            products = products.Where(p => p.Category == category);
+        }
+
+        return await products.Select(p => new ProductDto
         {
             Id = p.Id,
             Name = p.Name,
