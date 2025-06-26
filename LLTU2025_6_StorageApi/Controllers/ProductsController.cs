@@ -140,6 +140,19 @@ public class ProductsController : ControllerBase
         return NoContent();
     }
 
+    [HttpGet("stats")]
+    public async Task<ActionResult<ProductStatsDto>> GetProductStats()
+    {
+        var products = await _context.Products.ToListAsync();
+
+        return Ok(new ProductStatsDto
+        {
+            Count = products.Count,
+            Value = products.Sum(p => p.Price * p.Count),
+            AveragePrice = products.Average(p => p.Price)
+        });
+    }
+
     private bool ProductExists(int id)
     {
         return _context.Products.Any(e => e.Id == id);
